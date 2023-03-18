@@ -10,19 +10,19 @@ const Users = () => {
             image: 'https://i.pravatar.cc/200?img=0'
         },
         {
-            id: 'user2',
+            id: 'user1',
             name: 'Louise Makinson',
             places: [5],
             image: 'https://i.pravatar.cc/200?img=1'
         },
         {
-            id: 'user3',
+            id: 'user2',
             name: 'James Brampton',
             places: [4],
             image: 'https://i.pravatar.cc/200?img=4'
         },
         {
-            id: 'user4',
+            id: 'user3',
             name: 'Scott Davies',
             places: [9],
             image: 'https://i.pravatar.cc/200?img=3'
