@@ -1,3 +1,3 @@
-import UsersList from "./UsersList";
+import UsersList from './UsersList';
 
 export { UsersList };

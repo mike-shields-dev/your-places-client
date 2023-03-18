@@ -4,7 +4,7 @@ import './styles.css';
 
 const MainHeader = props => {
     return (
-        <header className="main-header">
+        <header className='main-header'>
             {props.children}
         </header>
     );

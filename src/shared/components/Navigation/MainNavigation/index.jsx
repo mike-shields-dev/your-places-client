@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import Backdrop from '../../UIElements/Backdrop';
 import MainHeader from '../MainHeader';
 import NavLinks from '../NavLinks';
 import SideDrawer from '../SideDrawer';
-import Backdrop from '../../UIElements/Backdrop';
 
 import './styles.css';
 
@@ -12,15 +12,15 @@ import './styles.css';
 const MainNavigation = props => {
     const [showSideDrawer, setShowSideDrawer] = useState(false);
     const [showBackdrop, setShowBackdrop] = useState(false);
-    
+
     const sideDrawer = (
         <SideDrawer>
-            <nav className="main-navigation__drawer-nav">
+            <nav className='main-navigation__drawer-nav'>
                 <NavLinks />
             </nav>
         </SideDrawer>
     );
-    
+
     const openDrawer = () => {
         setShowSideDrawer(true);
         setShowBackdrop(true);
@@ -41,8 +41,8 @@ const MainNavigation = props => {
                     <span />
                     <span />
                 </button>
-                <h1 className="main-navigation__title">
-                    <Link to="/">Your Places</Link>
+                <h1 className='main-navigation__title'>
+                    <Link to='/'>Your Places</Link>
                 </h1>
                 <nav className='main-navigation__header-nav'>
                     <NavLinks />
