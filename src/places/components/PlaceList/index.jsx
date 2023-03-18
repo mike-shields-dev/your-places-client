@@ -21,9 +21,6 @@ const PlaceList = props => {
                         coordinates={place.location}
                     /> 
                 ))}
-                <Card>
-                    <h2>N</h2>
-                </Card>
             </ul>
         );
     }
