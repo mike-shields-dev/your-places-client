@@ -13,30 +13,26 @@ const MainNavigation = props => {
     const [showSideDrawer, setShowSideDrawer] = useState(false);
     const [showBackdrop, setShowBackdrop] = useState(false);
 
-    const sideDrawer = (
-        <SideDrawer>
-            <nav className='main-navigation__drawer-nav'>
-                <NavLinks />
-            </nav>
-        </SideDrawer>
-    );
-
-    const openDrawer = () => {
+    const handleOpenDrawer = () => {
         setShowSideDrawer(true);
         setShowBackdrop(true);
     };
 
-    const closeDrawer = () => {
+    const handleCloseDrawer = () => {
         setShowSideDrawer(false);
         setShowBackdrop(false);
     };
 
     return (
         <Fragment>
-            {showBackdrop ? <Backdrop onClick={closeDrawer} /> : null}
-            {showSideDrawer ? sideDrawer : null}
+            <SideDrawer show={showSideDrawer} onClick={handleCloseDrawer}>
+                <nav className='main-navigation__drawer-nav'>
+                    <NavLinks />
+                </nav>
+            </SideDrawer>   
+            {showBackdrop && <Backdrop onClick={handleCloseDrawer} />}
             <MainHeader>
-                <button className='main-navigation__menu-btn' onClick={openDrawer}>
+                <button className='main-navigation__menu-btn' onClick={handleOpenDrawer}>
                     <span />
                     <span />
                     <span />
