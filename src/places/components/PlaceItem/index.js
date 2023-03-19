@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
+import AuthContext from '../../../shared/context/auth-context';
 
 import Card from '../../../shared/components/UIElements/Card';
 import Button from '../../../shared/components/FormElements/Button';
@@ -8,6 +9,7 @@ import Map from '../../../shared/components/UIElements/Map';
 import './styles.css';
 
 const PlaceItem = props => {
+    const { isLoggedIn } = useContext(AuthContext);
     const [showMap, setShowMap] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -60,8 +62,10 @@ const PlaceItem = props => {
                     </div>
                     <div className='place-item__actions'>
                         <Button inverse onClick={handleOpenMap}>View Map</Button>
-                        <Button to={`/places/${props.id}`}>Edit</Button>
-                        <Button onClick={handleShowDeleteModal} danger>Delete</Button>
+                        {isLoggedIn && <>
+                            <Button to={`/places/${props.id}`}>Edit</Button>
+                            <Button onClick={handleShowDeleteModal} danger>Delete</Button>
+                        </>}
                     </div>
                 </Card>
             </li>
