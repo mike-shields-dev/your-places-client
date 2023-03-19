@@ -2,6 +2,7 @@ import React from 'react';
 
 import Input from '../../../shared/components/FormElements/Input';
 import Button from '../../../shared/components/FormElements/Button';
+import Card from '../../../shared/components/UIElements/Card';
 
 import useForm from '../../../shared/components/hooks/useForm';
 import deriveFormState from '../../../shared/components/util/deriveFormState';
@@ -40,24 +41,27 @@ const Authenticate = () => {
         event.preventDefault();
         console.log(formState.inputs);
     };
-  return (
-      <form className="auth-form" onSubmit={handleFormSubmit}>
-            {formInputs.map(({
-                id,
-                element,
-                errorText,
-                label,
-                validators
-            }) =>
-                <Input
-                    key={`new-place-form$-${id}`}
-                    onInput={handleInput}
-                    {...{ id, element, label, validators, errorText }}
-                />
-            )}
-            <Button disabled={!formState.isValid}>Login</Button>
-      </form>
-  )
+    return (
+        <Card className="authentication">
+            <h2>Login Required</h2>
+            <form onSubmit={handleFormSubmit}>
+                {formInputs.map(({
+                    id,
+                    element,
+                    errorText,
+                    label,
+                    validators
+                }) =>
+                    <Input
+                        key={`new-place-form$-${id}`}
+                        onInput={handleInput}
+                        {...{ id, element, label, validators, errorText }}
+                    />
+                )}
+                <Button disabled={!formState.isValid}>Login</Button>
+            </form>
+        </Card>
+    )
 }
 
 export default Authenticate;
