@@ -2,7 +2,9 @@ import React from 'react';
 
 import Input from '../../../shared/components/FormElements/Input';
 import Button from '../../../shared/components/FormElements/Button';
+
 import useForm from '../../../shared/components/hooks/useForm';
+import deriveFormState from '../../../shared/components/util/deriveFormState';
 
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/components/util/validators';
 
@@ -16,7 +18,6 @@ const formInputs = [
         isValid: false,
         element: 'input',
         errorText: 'Please enter a valid title.',
-        minLength: 5,
         validators: [VALIDATOR_REQUIRE()]
     },
     {
@@ -39,15 +40,7 @@ const formInputs = [
     }
 ]
 
-const initFormState = formInputs.reduce((initFormState, formInput) => {
-    return {
-        ...initFormState,
-        [formInput.id]: {
-            value: formInput.value,
-            isValid: formInput.isValid,
-        }
-    }
-}, {});
+const initFormState = deriveFormState(formInputs);
 
 const NewPlace = () => {
     const [formState, handleInput] = useForm(initFormState, true);
