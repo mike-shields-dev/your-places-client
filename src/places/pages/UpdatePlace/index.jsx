@@ -130,7 +130,7 @@ const UpdatePlace = () => {
                     value={foundPlace[id]}
                     valid={isValid}
                     id={id}
-                    element={element}
+                    type={element}
                     label={label}
                     validators={validators}
                     errorText={errorText}
