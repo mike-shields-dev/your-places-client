@@ -43,7 +43,7 @@ const PlaceItem = props => {
                 footerClass='places-item__modal-actions'
                 footer={<>
                     <Button onClick={handleHideDeleteModal} inverse>Cancel</Button>
-                    <Button onClick={handleDeletePlace} danger>Delete</Button>
+                    <Button onClick={handleDeletePlace} danger>Confirm</Button>
                 </>}
             >
                 <p>Deleting a place cannot be undone!</p>
