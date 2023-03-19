@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import AuthContext from '../../../shared/context/auth-context';
 
 import Card from '../../../shared/components/UIElements/Card';
 import Input from '../../../shared/components/FormElements/Input';
@@ -13,8 +14,9 @@ import useForm from '../../../shared/components/hooks/useForm';
 import './styles.css';
 
 const Auth = () => {
+  const { login } = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-
+  
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -55,7 +57,6 @@ const Auth = () => {
 
   const authSubmitHandler = event => {
     event.preventDefault();
-    console.log(formState.inputs);
   };
 
   return (
@@ -92,7 +93,11 @@ const Auth = () => {
           errorText="Please enter a valid password, at least 5 characters."
           onInput={inputHandler}
         />
-        <Button type="submit" disabled={!formState.isValid}>
+        <Button
+          type="submit"
+          disabled={!formState.isValid}
+          onClick={login}
+        >
           {isLoginMode ? 'Log In' : 'Sign Up'}
         </Button>
         </form>
