@@ -9,10 +9,18 @@ import './styles.css';
 
 const PlaceItem = props => {
     const [showMap, setShowMap] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleOpenMap = () => setShowMap(true);
-
     const handleCloseMap = () => setShowMap(false);
+
+    const handleShowDeleteModal = () => setShowDeleteModal(true);
+    const handleHideDeleteModal = () => setShowDeleteModal(false);
+
+    const handleDeletePlace = () => {
+        console.log("deleted")
+        setShowDeleteModal(false);
+    }
 
     return (
         <Fragment>
@@ -28,6 +36,18 @@ const PlaceItem = props => {
                     <Map center={props.coordinates} zoom={16} />
                 </div>
             </Modal> 
+            <Modal
+                show={showDeleteModal}
+                onCancel={handleHideDeleteModal}
+                header='Are you sure?'
+                footerClass='places-item__modal-actions'
+                footer={<>
+                    <Button onClick={handleHideDeleteModal} inverse>Cancel</Button>
+                    <Button onClick={handleDeletePlace} danger>Delete</Button>
+                </>}
+            >
+                <p>Deleting a place cannot be undone!</p>
+            </Modal>
             <li className='place-item'>
                 <Card className="place-item__content">
                     <div className='place-item__image'>
@@ -41,7 +61,7 @@ const PlaceItem = props => {
                     <div className='place-item__actions'>
                         <Button inverse onClick={handleOpenMap}>View Map</Button>
                         <Button to={`/places/${props.id}`}>Edit</Button>
-                        <Button danger>Delete</Button>
+                        <Button onClick={handleShowDeleteModal} danger>Delete</Button>
                     </div>
                 </Card>
             </li>
