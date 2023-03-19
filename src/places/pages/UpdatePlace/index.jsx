@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+
 import Button from '../../../shared/components/FormElements/Button';
+import Card from '../../../shared/components/UIElements/Card';
 import Input from '../../../shared/components/FormElements/Input';
 
 import useForm from '../../../shared/components/hooks/useForm';
@@ -92,7 +94,9 @@ const UpdatePlace = () => {
     if (!foundPlace) {
         return (
             <div className='center'>
-                <h2>No place found. </h2>
+                <Card>
+                    <h2>No place found. </h2>
+                </Card>
             </div>
         );
     }
