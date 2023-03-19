@@ -78,17 +78,22 @@ const UpdatePlace = () => {
     const foundPlace = PLACES.find(place => place.id === placeId);
 
     useEffect(() => {
-        const { title, description } = foundPlace;
-        setFormState({
-            title: {
-                value: title,
-                isValid: true,
-            },
-            description: {
-                value: description,
-                isValid: true,
-            }
-        }, true);
+        if (foundPlace) {
+
+            const { title, description } = foundPlace;
+
+            setFormState({
+                title: {
+                    value: title,
+                    isValid: true,
+                },
+                description: {
+                    value: description,
+                    isValid: true,
+                }
+            }, true);
+        }
+
     }, [foundPlace, setFormState]);
 
     if (!foundPlace) {
