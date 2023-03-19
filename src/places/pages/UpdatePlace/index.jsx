@@ -38,6 +38,7 @@ const PLACES = [
     },
 ];
 
+
 const formInputs = [
     {
         id: 'title',
@@ -85,8 +86,16 @@ const UpdatePlace = () => {
         );
     }
 
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        console.log(formState.inputs);
+    };
+
     return (
-        <form className='place-form'>
+        <form
+            className='place-form'
+            onSubmit={handleFormSubmit}
+        >
             {formInputs.map(({
                 id,
                 element,
@@ -107,7 +116,12 @@ const UpdatePlace = () => {
                     errorText={errorText}
                 />
             )}
-            <Button type='submit' disabled={!formState.isValid}>Update Place</Button>
+            <Button
+                type='submit'
+                disabled={!formState.isValid}
+            >
+                Update Place
+            </Button>
         </form>
     )
 }
