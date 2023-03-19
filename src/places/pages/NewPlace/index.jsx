@@ -58,7 +58,10 @@ const NewPlace = () => {
     };
 
     return (
-        <form className='place-form' onSubmit={handleFormSubmit}>
+        <form
+            className='place-form'
+            onSubmit={handleFormSubmit}
+        >
             {formInputs.map(({
                 id,
                 element,
