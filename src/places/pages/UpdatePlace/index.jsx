@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import Button from '../../../shared/components/FormElements/Button';
-
 import Input from '../../../shared/components/FormElements/Input';
 
 import useForm from '../../../shared/components/hooks/useForm';
@@ -9,7 +8,6 @@ import useForm from '../../../shared/components/hooks/useForm';
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/components/util/validators';
 
 import '../styles.css';
-
 
 const PLACES = [
     {
@@ -37,7 +35,6 @@ const PLACES = [
         creator: 'user1',
     },
 ];
-
 
 const formInputs = [
     {
