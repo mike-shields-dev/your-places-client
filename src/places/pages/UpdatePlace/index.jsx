@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Button from '../../../shared/components/FormElements/Button';
 import Input from '../../../shared/components/FormElements/Input';
@@ -41,7 +41,7 @@ const formInputs = [
         id: 'title',
         label: 'Title',
         value: '',
-        isValid: true,
+        isValid: false,
         element: 'input',
         errorText: 'Please enter a valid title.',
         minLength: 5,
@@ -51,7 +51,7 @@ const formInputs = [
         id: 'description',
         label: 'Description',
         value: '',
-        isValid: true,
+        isValid: false,
         element: 'textarea',
         errorText: 'Please enter a valid description (5 characters minimum).',
         validators: [VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]
@@ -69,11 +69,25 @@ const initFormState = formInputs.reduce((initFormState, formInput) => {
 }, {});
 
 const UpdatePlace = () => {
-    const [formState, handleInput] = useForm(initFormState, true);
+    const [formState, handleInput, setFormState] = useForm(initFormState, false);
 
     const placeId = useParams().placeId;
 
     const foundPlace = PLACES.find(place => place.id === placeId);
+
+    useEffect(() => {
+        const { title, description } = foundPlace;
+        setFormState({
+            title: {
+                value: title,
+                isValid: true,
+            },
+            description: {
+                value: description,
+                isValid: true,
+            }
+        }, true);
+    }, [foundPlace, setFormState]);
 
     if (!foundPlace) {
         return (
