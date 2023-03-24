@@ -12,9 +12,17 @@ import Authenticate from './user/pages/Authenticate';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
 
-  const login = useCallback(() => setIsLoggedIn(true), []);
-  const logout = useCallback(() => setIsLoggedIn(false), []);
+  const login = useCallback((uid) => {
+    setIsLoggedIn(true)
+    setUserId(uid);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false)
+    setUserId(null);
+  }, []);
 
   const routes = (
     isLoggedIn ?
@@ -50,7 +58,7 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, login, logout }}
+      value={{ isLoggedIn, userId, login, logout }}
     >
       <Router>
         <MainNavigation />
