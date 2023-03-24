@@ -11,7 +11,7 @@ import UpdatePlace from './places/pages/UpdatePlace';
 import Authenticate from './user/pages/Authenticate';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = useCallback(() => setIsLoggedIn(true), []);
   const logout = useCallback(() => setIsLoggedIn(false), []);
