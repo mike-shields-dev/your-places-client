@@ -21,12 +21,11 @@ const UsersList = props => {
                     id={id}
                     image={image}
                     name={name}
-                    placeCount={places}
+                    placeCount={places.length}
                 />
             ))}
         </ul>
     );
-
 }
 
 export default UsersList;
