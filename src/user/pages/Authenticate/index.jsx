@@ -85,7 +85,7 @@ const Auth = () => {
             return setUncaughtError(data.message)
           }
 
-          login();
+          login(data.user.id);
 
         } catch (error) {
           setUncaughtError(error.message);
@@ -109,7 +109,7 @@ const Auth = () => {
             return setUncaughtError(data.message)
           }
 
-          login();
+          login(data.user.id);
 
         } catch (error) {
           setUncaughtError(error.message);
