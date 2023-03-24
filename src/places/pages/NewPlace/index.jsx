@@ -3,7 +3,7 @@ import React from 'react';
 import Input from '../../../shared/components/FormElements/Input';
 import Button from '../../../shared/components/FormElements/Button';
 
-import useForm from '../../../shared/components/hooks/useForm';
+import useForm from '../../../shared/hooks/useForm';
 import deriveFormState from '../../../shared/components/util/deriveFormState';
 
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/components/util/validators';

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { UsersList } from '../../components';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner';
 import ErrorModal from '../../../shared/components/UIElements/ErrorModal';
-import { useHttpClient } from '../../../shared/hooks';
+import useHttpClient from '../../../shared/hooks/useHttpClient';
 
 
 const Users = () => {

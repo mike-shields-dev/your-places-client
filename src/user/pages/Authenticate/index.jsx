@@ -14,8 +14,8 @@ import {
   VALIDATOR_REQUIRE
 } from '../../../shared/components/util/validators';
 
-import useForm from '../../../shared/components/hooks/useForm';
-import { useHttpClient } from '../../../shared/hooks';
+import useForm from '../../../shared/hooks/useForm';
+import { useHttpClient } from '../../../shared/hooks/useHttpClient';
 
 import './styles.css';
 

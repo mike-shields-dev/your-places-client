@@ -5,7 +5,7 @@ import Button from '../../../shared/components/FormElements/Button';
 import Card from '../../../shared/components/UIElements/Card';
 import Input from '../../../shared/components/FormElements/Input';
 
-import useForm from '../../../shared/components/hooks/useForm';
+import useForm from '../../../shared/hooks/useForm';
 
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/components/util/validators';
 
