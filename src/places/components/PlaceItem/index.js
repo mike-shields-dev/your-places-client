@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useContext } from 'react'
 import AuthContext from '../../../shared/context/auth-context';
-import { useHistory } from 'react-router-dom';
 
 import Card from '../../../shared/components/UIElements/Card';
 import Button from '../../../shared/components/FormElements/Button';
@@ -18,7 +17,6 @@ const PlaceItem = props => {
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
     const [showMap, setShowMap] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const history = useHistory();
 
     const handleOpenMap = () => setShowMap(true);
     const handleCloseMap = () => setShowMap(false);
@@ -27,26 +25,26 @@ const PlaceItem = props => {
     const handleHideDeleteModal = () => setShowDeleteModal(false);
 
     const handleDeletePlace = async () => {
+        setShowDeleteModal(false);
+        
+        const placeId = props.id;
+
         (async () => {
             try {
                 await sendRequest(
-                    `http://localhost:5000/api/places/${props.id}`,
+                    `http://localhost:5000/api/places/${placeId}`,
                     'DELETE',
                 )
-                
+                props.onDelete(placeId);
             } catch (error) {
 
             }
-
-            setShowDeleteModal(false);
-            history.go(0);
         })()
     }        
 
     return (
         <Fragment>
             <ErrorModal error={error} clear={clearError} />
-            {isLoading && <LoadingSpinner />}
             <Modal
                 show={showMap}
                 onCancel={handleCloseMap}
@@ -73,6 +71,7 @@ const PlaceItem = props => {
             </Modal>
             <li className='place-item'>
                 <Card className="place-item__content">
+                    {isLoading && <LoadingSpinner asOverlay/>}
                     <div className='place-item__image'>
                         <img src={props.image} alt={props.title} />
                     </div>

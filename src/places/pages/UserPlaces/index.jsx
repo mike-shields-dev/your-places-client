@@ -11,7 +11,7 @@ const UserPlaces = () => {
     const history = useHistory(); 
     const { userId } = useParams();
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
-    const [ userPlaces, setUserPlaces ] = useState([]);
+    const [ userPlaces, setUserPlaces ] = useState();
 
     useEffect(() => {
         (async () => {
@@ -23,15 +23,19 @@ const UserPlaces = () => {
 
                  setUserPlaces(places);
 
-            } catch (error) {
-                console.log(error);
-            }
+            } catch (error) {}
         })();
     }, [sendRequest, userId]);
 
     const clearErrorHandler = () => {
         history.push('/');
+        clearError()
     }
+
+    const onDelete = (placeId) => {
+        setUserPlaces(prev => 
+            prev.filter(place => place.id !== placeId));
+    };
 
     return (
         <>
@@ -41,8 +45,8 @@ const UserPlaces = () => {
                 <LoadingSpinner />
             </div>}
 
-            { !isLoading && userPlaces.length > 0 && 
-                <PlaceList items={userPlaces} />
+            { !isLoading && userPlaces && 
+                <PlaceList items={userPlaces} onDelete={onDelete} />
             }
         </>
     );
