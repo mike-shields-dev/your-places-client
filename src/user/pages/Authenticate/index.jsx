@@ -156,7 +156,13 @@ const Auth = () => {
             type="password"
             label="Password"
             validators={[VALIDATOR_PASSWORD()]}
-            errorText="Please enter a valid password, at least 8 characters."
+            errorText={`
+              Please enter a valid password:
+              min 8 characters, 
+              min 1 upper case character, 
+              min 1 lower case character, 
+              min 1 number,
+              min 1 special character`}
             onInput={inputHandler}
           />
           <Button
