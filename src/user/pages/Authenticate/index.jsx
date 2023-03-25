@@ -6,7 +6,7 @@ import Input from '../../../shared/components/FormElements/Input';
 import Button from '../../../shared/components/FormElements/Button';
 import ErrorModal from '../../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner';
-
+import ImageUpload from '../../../shared/components/FormElements/ImageUpload';
 
 import {
   VALIDATOR_EMAIL,
@@ -45,7 +45,8 @@ const Auth = () => {
       setFormData(
         {
           ...formState.inputs,
-          name: undefined
+          name: undefined,
+          image: undefined,
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -55,7 +56,11 @@ const Auth = () => {
           ...formState.inputs,
           name: {
             value: '',
-            isValid: false
+            isValid: false,
+            image: {
+              value: null,
+              isValid: false,
+            }
           }
         },
         false
@@ -67,7 +72,7 @@ const Auth = () => {
 
   const authSubmitHandler = async event => {
     event.preventDefault();
-
+      console.log(formState.inputs);
       if(isLoginMode) {
         
         try {
@@ -94,15 +99,17 @@ const Auth = () => {
       } else {
         
         try {
+          const formData = new FormData();
+          
+          for(const key in formState.inputs) {
+            formData.append([key], formState.inputs[key].value);
+          }
+
+
           const data = await sendRequest(
             'http://localhost:5000/api/users/signup', 
             'POST',
-            JSON.stringify({
-              name: formState.inputs.name.value,
-              email: formState.inputs.email.value,
-              password: formState.inputs.password.value,
-            }),
-            { 'Content-Type': 'application/json' },
+            formData,
           );
           
           if(!data.user) {
@@ -139,7 +146,7 @@ const Auth = () => {
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a name."
               onInput={inputHandler}
-            />
+              />
           )}
           <Input
             element="input"
@@ -165,6 +172,14 @@ const Auth = () => {
               min 1 special character`}
             onInput={inputHandler}
           />
+
+          {!isLoginMode && 
+            <ImageUpload 
+              id="image" 
+              onInput={inputHandler}
+            />
+          }
+          
           <Button
             type="submit"
             disabled={!formState.isValid}
