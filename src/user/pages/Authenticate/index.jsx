@@ -10,7 +10,7 @@ import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner
 
 import {
   VALIDATOR_EMAIL,
-  VALIDATOR_MINLENGTH,
+  VALIDATOR_PASSWORD,
   VALIDATOR_REQUIRE
 } from '../../../shared/util/validators';
 
@@ -155,8 +155,8 @@ const Auth = () => {
             id="password"
             type="password"
             label="Password"
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid password, at least 5 characters."
+            validators={[VALIDATOR_PASSWORD()]}
+            errorText="Please enter a valid password, at least 8 characters."
             onInput={inputHandler}
           />
           <Button

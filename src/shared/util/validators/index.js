@@ -5,6 +5,7 @@ const VALIDATOR_TYPE_MIN = 'MIN';
 const VALIDATOR_TYPE_MAX = 'MAX';
 const VALIDATOR_TYPE_EMAIL = 'EMAIL';
 const VALIDATOR_TYPE_FILE = 'FILE';
+const VALIDATOR_TYPE_PASSWORD = 'PASSWORD';
 
 export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
 export const VALIDATOR_FILE = () => ({ type: VALIDATOR_TYPE_FILE });
@@ -14,6 +15,11 @@ export const VALIDATOR_MINLENGTH = value => ({
 });
 export const VALIDATOR_MAXLENGTH = value => ({
     type: VALIDATOR_TYPE_MAXLENGTH,
+    value
+});
+
+export const VALIDATOR_PASSWORD = value => ({
+    type: VALIDATOR_TYPE_PASSWORD,
     value
 });
 export const VALIDATOR_MIN = value => ({ type: VALIDATOR_TYPE_MIN, val: value });
@@ -41,6 +47,23 @@ export const validate = (value, validators) => {
         }
         if (validator.type === VALIDATOR_TYPE_EMAIL) {
             isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
+        }
+        if(validator.type === VALIDATOR_TYPE_PASSWORD) {
+            const hasUpperCaseLetter = "(?=.*?[A-Z])";
+            const hasLowerCaseLetter = "(?=.*?[a-z])";
+            const hasDigit = "(?=.*?[0-9])";
+            const hasSpecialCharacter = "(?=.*?[!@#$%^&*()_\\-+={}\\[\\]|;:'\",.<>\\/?])";
+            const minLength = ".{8,}";
+            
+            const regex = new RegExp(
+                `^${hasUpperCaseLetter}${
+                    hasLowerCaseLetter}${
+                    hasDigit}${
+                    hasSpecialCharacter}${
+                    minLength
+                    }`);
+
+            isValid = isValid && regex.test(value);
         }
     }
 
