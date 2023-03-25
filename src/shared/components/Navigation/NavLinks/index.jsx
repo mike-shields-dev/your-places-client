@@ -6,6 +6,7 @@ import AuthContext from '../../../context/auth-context';
 import './styles.css';
 
 const NavLinks = props => {
+    const { userId } = useContext(AuthContext);
     const { isLoggedIn, logout } = useContext(AuthContext);
 
     return (
@@ -16,7 +17,7 @@ const NavLinks = props => {
             {isLoggedIn ?
                 <>
                     <li>
-                        <NavLink to='/user1/places'>My Places</NavLink>
+                        <NavLink to={`/${userId}/places`}>My Places</NavLink>
                     </li>
                     <li>
                         <NavLink to='/places/new'>Add Place</NavLink>
