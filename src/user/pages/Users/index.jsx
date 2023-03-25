@@ -8,8 +8,7 @@ import useHttpClient from '../../../shared/hooks/useHttpClient';
 
 const Users = () => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
-    const [uncaughtError, setUncaughtError] = useState();
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState();
 
     useEffect(() => {
         try {
@@ -23,7 +22,6 @@ const Users = () => {
          })();
 
         } catch (error) {
-            setUncaughtError(error.message)
         }
 
     }, [sendRequest]); 
@@ -32,13 +30,15 @@ const Users = () => {
 
     return (
         <>
-            <ErrorModal error={error || uncaughtError} onClear={clearErrorHandler} />
+            <ErrorModal error={error} onClear={clearErrorHandler} />
             {isLoading && (
                 <div className="center">
                     <LoadingSpinner />
                 </div>
             )}
-            {!isLoading && users && <UsersList items={users} />}
+            {!isLoading && users && 
+                <UsersList items={users} />
+            }
         </>
     );
 }
