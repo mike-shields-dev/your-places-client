@@ -13,7 +13,7 @@ import useHttpClient from '../../../shared/hooks/useHttpClient';
 import './styles.css';
 
 const PlaceItem = props => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const { userId } = useContext(AuthContext);
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
     const [showMap, setShowMap] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -82,10 +82,12 @@ const PlaceItem = props => {
                     </div>
                     <div className='place-item__actions'>
                         <Button inverse onClick={handleOpenMap}>View Map</Button>
-                        {isLoggedIn && <>
-                            <Button to={`/places/${props.id}`}>Edit</Button>
-                            <Button onClick={handleShowDeleteModal} danger>Delete</Button>
-                        </>}
+                        {userId === props.creatorId &&
+                            <>
+                                <Button to={`/places/${props.id}`}>Edit</Button>
+                                <Button onClick={handleShowDeleteModal} danger>Delete</Button>
+                            </>
+                        }
                     </div>
                 </Card>
             </li>
