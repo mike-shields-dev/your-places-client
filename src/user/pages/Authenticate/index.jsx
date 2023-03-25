@@ -12,7 +12,7 @@ import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE
-} from '../../../shared/components/util/validators';
+} from '../../../shared/util/validators';
 
 import useForm from '../../../shared/hooks/useForm';
 import { useHttpClient } from '../../../shared/hooks/useHttpClient';

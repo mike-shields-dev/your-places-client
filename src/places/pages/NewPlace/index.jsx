@@ -10,9 +10,9 @@ import LoadingSpinner from '../../../shared/components/UIElements/LoadingSpinner
 
 import useForm from '../../../shared/hooks/useForm';
 import useHttpClient from '../../../shared/hooks/useHttpClient';
-import deriveFormState from '../../../shared/components/util/deriveFormState';
+import deriveFormState from '../../../shared/util/deriveFormState';
 
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/components/util/validators';
+import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/util/validators';
 
 import '../styles.css';
 

@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect } from 'react'
 
-import { validate } from '../../util/validators';
+import { validate } from '../../../../shared/util/validators';
 
 import './styles.css';
 

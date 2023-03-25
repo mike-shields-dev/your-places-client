@@ -11,7 +11,7 @@ import ErrorModal from '../../../shared/components/UIElements/ErrorModal';
 import useForm from '../../../shared/hooks/useForm';
 import useHttpClient from '../../../shared/hooks/useHttpClient';
 
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/components/util/validators';
+import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../../shared/util/validators';
 
 import '../styles.css';
 
